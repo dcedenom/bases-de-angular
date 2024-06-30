@@ -1,0 +1,98 @@
+<h4>Listado</h4>
+<hr>
+<ul class="list-group">
+  <!--si queremos estraer el indice de objetos por algún motivo solo utilizamos let i = index, este index ya esta contenido en el ngFor-->
+  <li *ngFor="let character of characterList; let i = index " class="list-group-item d-flex justify-content-between align-items-center">
+    <div>
+    <span class="text-primary"> {{ i + 1 }}. </span>
+    <!--una vez declarado utilizamos el index asi → {{i}} si queremos omitir el 0 solo simamos 1 {{i+1}}-->
+    <span>{{ character.name }} - </span>
+    <strong> Power </strong>
+    <span>{{ character.power }}</span>
+
+    <!--si ocupamos ordenarlo diferente ejemplo si es el primero o el más fuerte oascendente o descendente-->
+    <span> Es el primero: {{ i===0 }}</span>
+    <span> Es el Último: {{ i===characterList.length - 1 }} </span>
+  </div>
+    <button (click)="onDeleteCharacter( character.id )" class="btn btn-danger"> x </button>
+  </li>
+
+  <!--algo más elaborado para ese tipo de ordenamiento-->
+ <hr>
+ <hr>
+
+  <!--el indice nos puede ser útil y podemos realizar todas estas cosas, pero tenemos más opciones para
+    extraer las posiciones y aplicar clases x ejemplo de bootstrap
+  ejs: isFirst, isLast, isEven (par) isOdd(impar)-->
+ <li *ngFor="
+  let character of characterList;
+  let i = index;
+  let isFirst = first;
+  let isLast = last;
+  let isEven = even;
+  let isOdd = odd;
+  "
+  class="list-group-item list-group-item-success d-flex justify-content-between align-items-center">
+
+  <div>
+    <span class="text-primary"> {{ i + 1 }}. </span>
+
+    <span>{{ character.name }} - </span>
+
+    <strong> Power </strong>
+
+    <span>{{ character.power }}</span>
+
+    <span> Es el primero: {{ isFirst }}</span>
+
+    <span> Es el Último: {{ isLast}} </span>
+
+    <span> Es par: {{ isEven }},</span>
+
+    <span> Es Impar: {{ isOdd }}.</span>
+  </div>
+    <button (click)="onDeleteCharacter(character.id )" class="btn btn-danger"> x </button>
+
+  </li>
+
+  <hr>
+  <hr>
+
+   <!--utilizamos ngclass para empezar a crear condiciones sin añadir mucha lógica al html, algo que debemos evitar-->
+  <li *ngFor="
+   let character of characterList;
+   let i = index;
+   let isFirst = first;
+   let isLast = last;
+   let isEven = even;
+   let isOdd = odd;
+   "
+   class="list-group-item d-flex justify-content-between align-items-center"
+   [ngClass]="{
+    'list-group-item-dark': isLast,
+    'list-group-item-info': isEven,
+    'list-group-item-warning': isOdd,
+  }">
+
+  <div>
+     <span class="text-primary"> {{ i + 1 }}. </span>
+
+     <span>{{ character.name }} - </span>
+
+     <strong> Power </strong>
+
+     <span>{{ character.power }}</span>
+
+     <span> Es el primero: {{ isFirst }}</span>
+
+     <span> Es el Último: {{ isLast}} </span>
+
+     <span> Es par: {{ isEven }},</span>
+
+     <span> Es Impar: {{ isOdd }}.</span>
+</div>
+     <button (click)="onDeleteCharacter( character.id )" class="btn btn-danger"> x </button>
+
+   </li>
+
+</ul>

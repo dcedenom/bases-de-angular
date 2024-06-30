@@ -1,0 +1,34 @@
+<!--uso del ng / ngif / ngelse-->
+
+<h3>Listado de Héroes</h3>
+
+<!--si no existe heroe borrado no necesita aparecer el h3 de Heroe Borrado por lo que lo vamos a ocultar, podemos utilizar el ngif directo pero existen otras formas ↓-->
+
+<!--creamos un div y utilizamos un valor falso, una expresion que lo valide-->
+<div *ngIf="deleteHero; else nothingWasDeleted">
+<h3>Héroe Borrado <small class="text-danger">{{deleteHero}}</small></h3>
+</div>
+
+<!--si ya evaluamos la condicion no tiene sentido volverla a evaluar-->
+<!-- <h3 *ngIf="!deleteHero">Ningún Héroe Borrado</h3> -->
+
+<!--en vez de volver a evaluar usamos el ng-template que es como un div pero no es visible ni forma parte de la estructura de la pagina fisicamente solo su contenido se muestra-->
+<ng-template #nothingWasDeleted>  <!--es más util que crear un div fisicamente ya que puede ser que un div fidico destruya mi estructura del html, necesitamos una referencia con cualquier nombre para llamarlo en el ng-else la marcamos con # ej: #nothingWasDeleted-->
+  <h3 *ngIf="!deleteHero">Ningún Héroe Borrado</h3>
+</ng-template>
+
+<button
+  *ngIf="heroNames.length> 0"
+  (click)="removeLastHero()"
+  class="btn btn-outline-danger">
+  Borrar último héroe
+</button>
+<ul class="mt-2 list-group">
+  <!-- <li class="list-group-item">Spiderman</li>
+  <li class="list-group-item">Spiderman</li>
+  <li class="list-group-item">Spiderman</li> -->
+
+  <!--si usamos la directiva ngfor creamos el listado automaticamente-->
+  <!-- <li *ngFor="let name of heroNames" class="list-group-item">Spiderman</li> -->
+  <li *ngFor="let name of heroNames" class="list-group-item">{{name}}</li>
+</ul>

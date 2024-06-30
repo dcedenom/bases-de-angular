@@ -1,0 +1,15 @@
+<h1>DBZ Personajes</h1>
+<hr>
+<div class="row">
+  <div class="col">
+    <!--ya nuestro código no esta en los componentes y los pasamos a-->
+    <dbz-list [characterList]="characters"
+              (onDelete)="onDeleteCharacter($event)"></dbz-list> <!-- ← ahora podemos ver la información del padre enviada al hijo, debe ser del tipo que se envio al hijo no puede ser diferente, ahora no aparecerá trunks porque era la información por defecto -->
+  </div>
+  <div class="col">
+    <!-- {{characters}} desde aqui tengo acceso a la información de los characters -->
+    <!--llaves cuadradas componentes, parentesis eventos-->
+    <!--quiero escuchar un evento cuando dbz emita un nuevo personaje, una vez definido en el componente padre lo recibo acá con $event-->
+    <dbz-add-character (onNewCharacter)="onNewCharacter($event)"></dbz-add-character>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<h1>{{name}}</h1>
+
+<dl>
+<td>Nombre: </td>
+<dd> {{name}} </dd>
+
+<td>Edad: </td>
+<dd> {{age}} </dd>
+
+<td>Método: </td>
+<dd> {{ getHeroDescription() }} </dd> <!--se puede poner cualquier expresión de javascript ej 2*2 o 1+1-->
+
+<td>Capitalizado: </td>
+<dd> {{capitalizedName}} </dd>
+</dl>
+<!--ngif es una expresion propia de angular y NO necesita llaves {{}} para hacer llamados, simplemente colocamos una expresion de javascript / false, undefine, null o 0 son considerados falsos y vana ocultar en este caso el botón, -1 es un valor entonces no será considerado como falso -->
+<button *ngIf="name !== 'Spiderman'" (click)="changeHero()" class="btn btn-primary mx-2" >
+  Cambiar Nombre
+</button>
+
+<button *ngIf="age !== 25"(click)="changeAge()" class="btn btn-primary">
+  Cambiar Edad
+</button>
+
+<button (click)="resetForm()" class="btn btn-secondary mx-2">
+  Reestablecer valores
+</button>
